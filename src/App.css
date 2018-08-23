@@ -19,6 +19,14 @@ body {
   align-items: center;
 }
 
+.addTimer {
+  height: 30px;
+  width: 100px;
+  border-radius: 3px;
+  cursor: pointer;
+  background-color: yellow;
+}
+
 /*.App-logo {*/
   /*animation: App-logo-spin infinite 20s linear;*/
   /*height: 80px;*/

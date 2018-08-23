@@ -6,10 +6,19 @@ class App extends Component {
   render() {
     return (
       <div className="App">
+        <div className="content">
           <Timer />
+          <div className="addTimer" onClick={addTimer}>
+            Add Timer
+          </div>
+        </div>
       </div>
     );
   }
 }
 
 export default App;
+
+const addTimer = function() {
+    console.log("'Add Timer' clicked");
+};
