@@ -3,6 +3,14 @@ import './timer.css';
 
 export class Timer extends Component {
 
+    constructor(props){
+        super(props);
+        this.startStop = this.startStop.bind(this);
+        this.countDown = this.countDown.bind(this);
+    }
+
+    interval;
+
     render() {
         return (
             <div className="timer-box">
@@ -11,7 +19,9 @@ export class Timer extends Component {
                         (Timer Name)
                     </div>
                     <div className="timer-numbers">
-                        0:00
+                        <div id="timer-value1">00</div>:
+                        <div id="timer-value2">01</div>:
+                        <div id="timer-value3">00</div>
                     </div>
                 </div>
                 <div className="box-bottom">
@@ -31,6 +41,7 @@ export class Timer extends Component {
         )
     }
 
+
     startStop() {
 
         let element = document.getElementById("start-stop");
@@ -40,6 +51,7 @@ export class Timer extends Component {
             element.classList.remove("start");
             element.classList.add("stop");
             console.log("Timer started");
+            this.interval = setInterval(this.countDown, 1000);
             return;
         }
 
@@ -47,7 +59,39 @@ export class Timer extends Component {
             element.innerHTML = "Start";
             element.classList.remove("stop");
             element.classList.add("start");
+            clearInterval(this.interval);
             console.log("Timer stopped");
+        }
+    }
+
+    countDown() {
+
+        let element1 = document.getElementById("timer-value1");
+        let element2 = document.getElementById("timer-value2");
+        let element3 = document.getElementById("timer-value3");
+
+        if (Number(element3.innerHTML) >= 1 && Number(element3.innerHTML) <=59){
+            element3.innerHTML = (Number(element3.innerHTML) - 1).toString();
+        }
+
+        if (Number(element3.innerHTML) === 0){
+
+            if (Number(element2.innerHTML) === 0){
+                if (Number(element1.innerHTML) > 0){
+                    element1.innerHTML = (Number(element1.innerHTML) - 1).toString();
+                }
+                if (Number(element1.innerHTML) === 0){
+                    alert("End of timer!");
+                    console.log("Timer concluded.");
+                    clearInterval(this.interval);
+                    this.startStop();
+                }
+            }
+            if (Number(element2.innerHTML) > 0){
+                element2.innerHTML = (Number(element2.innerHTML) - 1).toString();
+                element3.innerHTML = '59';
+            }
+
         }
     }
 }
