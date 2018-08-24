@@ -9,7 +9,7 @@ class App extends Component {
   constructor(props){
       super(props);
       this.addTimer = this.addTimer.bind(this);
-      this.state = {timers: [<Timer key={1} />]};
+      this.state = {timers: [<Timer key={this.numOfTimers} num={this.numOfTimers} />]};
   }
 
   numOfTimers = 1;
@@ -30,7 +30,7 @@ class App extends Component {
 
   addTimer(){
     this.numOfTimers = this.numOfTimers + 1;
-    this.state.timers.push(<Timer key={this.numOfTimers} />);
+    this.state.timers.push(<Timer key={this.numOfTimers} num={this.numOfTimers} />);
     this.setState({
         timers: this.state.timers
     })

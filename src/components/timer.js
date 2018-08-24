@@ -9,11 +9,6 @@ export class Timer extends Component {
         this.countDown = this.countDown.bind(this);
     }
 
-    interval;
-    startStopId = "start-stop" + this.props.key.toString();
-    //Need to find out why the above this.props is being read as undefined.
-    //Will not work unless this is resolved.
-
     render() {
         return (
             <div className="timer-box">
@@ -22,13 +17,13 @@ export class Timer extends Component {
                         (Timer Name)
                     </div>
                     <div className="timer-numbers">
-                        <div id="timer-value1">00</div>:
-                        <div id="timer-value2">01</div>:
-                        <div id="timer-value3">05</div>
+                        <div id={this.props.num + "timer-value1"}>00</div>:
+                        <div id={this.props.num + "timer-value2"}>01</div>:
+                        <div id={this.props.num + "timer-value3"}>05</div>
                     </div>
                 </div>
                 <div className="box-bottom">
-                    <div className="button start" id="start-stop" onClick={this.startStop}>
+                    <div className="button start" id={this.props.num + "start-stop"} onClick={this.startStop}>
                         Start
                     </div>
                     <div className="edit-delete">
@@ -47,7 +42,7 @@ export class Timer extends Component {
 
     startStop() {
 
-        let element = document.getElementById("start-stop");
+        let element = document.getElementById(this.props.num + "start-stop");
 
         if (element.innerHTML === "Start"){
             element.innerHTML = "Stop";
@@ -69,9 +64,9 @@ export class Timer extends Component {
 
     countDown() {
 
-        let element1 = document.getElementById("timer-value1");
-        let element2 = document.getElementById("timer-value2");
-        let element3 = document.getElementById("timer-value3");
+        let element1 = document.getElementById(this.props.num + "timer-value1");
+        let element2 = document.getElementById(this.props.num + "timer-value2");
+        let element3 = document.getElementById(this.props.num + "timer-value3");
 
         if (Number(element3.innerHTML) >= 1 && Number(element3.innerHTML) <=59){
             element3.innerHTML = (Number(element3.innerHTML) - 1).toString();
