@@ -10,6 +10,9 @@ export class Timer extends Component {
     }
 
     interval;
+    startStopId = "start-stop" + this.props.key.toString();
+    //Need to find out why the above this.props is being read as undefined.
+    //Will not work unless this is resolved.
 
     render() {
         return (
@@ -21,7 +24,7 @@ export class Timer extends Component {
                     <div className="timer-numbers">
                         <div id="timer-value1">00</div>:
                         <div id="timer-value2">01</div>:
-                        <div id="timer-value3">00</div>
+                        <div id="timer-value3">05</div>
                     </div>
                 </div>
                 <div className="box-bottom">
@@ -72,13 +75,23 @@ export class Timer extends Component {
 
         if (Number(element3.innerHTML) >= 1 && Number(element3.innerHTML) <=59){
             element3.innerHTML = (Number(element3.innerHTML) - 1).toString();
+            if (Number(element3.innerHTML) < 10){
+                element3.innerHTML = '0' + element3.innerHTML;
+            }
+            return;
         }
 
         if (Number(element3.innerHTML) === 0){
 
             if (Number(element2.innerHTML) === 0){
+                element2.innerHTML = '00';
+
                 if (Number(element1.innerHTML) > 0){
                     element1.innerHTML = (Number(element1.innerHTML) - 1).toString();
+
+                    if (element1.innerHTML < 10){
+                        element1.innerHTML = '0' + element1.innerHTML;
+                    }
                 }
                 if (Number(element1.innerHTML) === 0){
                     alert("End of timer!");
@@ -89,6 +102,9 @@ export class Timer extends Component {
             }
             if (Number(element2.innerHTML) > 0){
                 element2.innerHTML = (Number(element2.innerHTML) - 1).toString();
+                if(Number(element2.innerHTML)<10){
+                    element2.innerHTML = '0' + element2.innerHTML;
+                }
                 element3.innerHTML = '59';
             }
 

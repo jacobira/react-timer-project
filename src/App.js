@@ -2,23 +2,40 @@ import React, { Component } from 'react';
 import './App.css';
 import { Timer } from './components/timer.js';
 
+
+
 class App extends Component {
+
+  constructor(props){
+      super(props);
+      this.addTimer = this.addTimer.bind(this);
+      this.state = {timers: [<Timer key={1} />]};
+  }
+
+  numOfTimers = 1;
+
   render() {
+
     return (
       <div className="App">
-        <div className="content">
-          <Timer />
-          <div className="addTimer" onClick={addTimer}>
-            Add Timer
-          </div>
+        <div className="content" id="contentBox">
+            {this.state.timers}
+        </div>
+        <div className="addTimer" onClick={this.addTimer}>
+          Add Timer
         </div>
       </div>
     );
   }
-}
 
+  addTimer(){
+    this.numOfTimers = this.numOfTimers + 1;
+    this.state.timers.push(<Timer key={this.numOfTimers} />);
+    this.setState({
+        timers: this.state.timers
+    })
+
+  }
+}
 export default App;
 
-const addTimer = function() {
-    console.log("'Add Timer' clicked");
-};
