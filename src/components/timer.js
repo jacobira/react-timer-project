@@ -1,38 +1,38 @@
 import React, { Component } from 'react';
 import './timer.css';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 export class Timer extends Component {
 
     constructor(props){
         super(props);
+
         this.startStop = this.startStop.bind(this);
         this.countDown = this.countDown.bind(this);
+        this.numberFormat = this.numberFormat.bind(this);
+        this.deleteTimer = this.deleteTimer.bind(this);
     }
+
 
     render() {
         return (
-            <div className="timer-box">
+            <div className="timer-box" id={this.props.num + "timer-box"}>
                 <div className="timer-content">
-                    <div className="timer-name">
+                    <div className="timer-name" contentEditable={true}>
                         (Timer Name)
                     </div>
                     <div className="timer-numbers">
-                        <div id={this.props.num + "timer-value1"}>00</div>:
-                        <div id={this.props.num + "timer-value2"}>01</div>:
-                        <div id={this.props.num + "timer-value3"}>05</div>
+                        <div id={this.props.num + "timer-value1"} contentEditable={true}>00</div>:
+                        <div id={this.props.num + "timer-value2"} contentEditable={true}>00</div>:
+                        <div id={this.props.num + "timer-value3"} contentEditable={true}>00</div>
                     </div>
                 </div>
                 <div className="box-bottom">
                     <div className="button start" id={this.props.num + "start-stop"} onClick={this.startStop}>
                         Start
                     </div>
-                    <div className="edit-delete">
-                        <div className="button edit">
-                            Edit
-                        </div>
-                        <div className="delete">
-                            {/*trash can icon here*/}
-                        </div>
+                    <div className="delete">
+                        <FontAwesomeIcon className="trash" icon="trash-alt" onClick={this.deleteTimer}/>
                     </div>
                 </div>
             </div>
@@ -43,6 +43,7 @@ export class Timer extends Component {
     startStop() {
 
         let element = document.getElementById(this.props.num + "start-stop");
+        this.numberFormat();
 
         if (element.innerHTML === "Start"){
             element.innerHTML = "Stop";
@@ -59,6 +60,38 @@ export class Timer extends Component {
             element.classList.add("start");
             clearInterval(this.interval);
             console.log("Timer stopped");
+        }
+    }
+
+    numberFormat(){
+
+        let element1 = document.getElementById(this.props.num + "timer-value1");
+        let element2 = document.getElementById(this.props.num + "timer-value2");
+        let element3 = document.getElementById(this.props.num + "timer-value3");
+
+        if (Number(element1.innerHTML) >=0 && Number(element1.innerHTML) <10){
+            element1.innerHTML = "0" + (Number(element1.innerHTML)).toString();
+        }
+        if (Number(element2.innerHTML) >=0 && Number(element2.innerHTML) <10){
+            element2.innerHTML = "0" + (Number(element2.innerHTML)).toString();
+        }
+        if (Number(element3.innerHTML) >=0 && Number(element3.innerHTML) <10){
+            element3.innerHTML = "0" + (Number(element3.innerHTML)).toString();
+        }
+
+        if (Number(element1.innerHTML) > 59 || Number(element1.innerHTML < 0)){
+            element1.innerHTML = "00";
+            alert("Please enter correct time measurements");
+            return
+        }
+        if (Number(element2.innerHTML) > 59 || Number(element2.innerHTML < 0)){
+            element2.innerHTML = "00";
+            alert("Please enter correct time measurements");
+            return
+        }
+        if (Number(element3.innerHTML) > 59 || Number(element3.innerHTML < 0)){
+            element3.innerHTML = "00";
+            alert("Please enter correct time measurements");
         }
     }
 
@@ -87,12 +120,13 @@ export class Timer extends Component {
                     if (element1.innerHTML < 10){
                         element1.innerHTML = '0' + element1.innerHTML;
                     }
+
+                    element2.innerHTML = "60";
+                    element3.innerHTML = "00";
                 }
-                if (Number(element1.innerHTML) === 0){
-                    alert("End of timer!");
-                    console.log("Timer concluded.");
-                    clearInterval(this.interval);
+                else {
                     this.startStop();
+                    return
                 }
             }
             if (Number(element2.innerHTML) > 0){
@@ -104,6 +138,11 @@ export class Timer extends Component {
             }
 
         }
+    }
+
+    deleteTimer() {
+        this.startStop();
+        document.getElementById(this.props.num + "timer-box").remove();
     }
 }
 

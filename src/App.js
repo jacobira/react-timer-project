@@ -1,8 +1,10 @@
 import React, { Component } from 'react';
 import './App.css';
 import { Timer } from './components/timer.js';
+import { library } from '@fortawesome/fontawesome-svg-core';
+import { faTrashAlt } from '@fortawesome/free-solid-svg-icons';
 
-
+library.add(faTrashAlt);
 
 class App extends Component {
 

@@ -4,6 +4,8 @@ html {
 
 body {
   height: 100%;
+  padding-top: 20px;
+  padding-bottom: 20px;
 }
 
 #root {
@@ -14,14 +16,18 @@ body {
 
 .App {
   text-align: center;
-  display: flex;
   justify-content: center;
-  align-items: center;
 }
 
 .addTimer {
-  height: 30px;
-  width: 100px;
+  height: 20px;
+  width: 300px;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  margin-left: 10px;
+  margin-right: 10px;
+  margin-bottom: 30px;
+  text-align: center;
   border-radius: 3px;
   cursor: pointer;
   background-color: yellow;

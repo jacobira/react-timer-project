@@ -1,5 +1,5 @@
 .timer-box {
-    height: 200px;
+    height: 120px;
     width: 300px;
     border-radius: 3px;
     margin: 10px;
@@ -7,7 +7,11 @@
 }
 
 .timer-name {
+    height: 40px;
     font-size: 30px;
+    border-top-left-radius: 3px;
+    border-top-right-radius: 3px;
+    background-color: lightblue;
 }
 
 .timer-numbers {
@@ -16,9 +20,15 @@
     justify-content: center;
 }
 
+.box-bottom {
+    display: flex;
+}
+
 .button {
-    height: 30px;
+    height: 20px;
     width: 70px;
+    padding-top: 5px;
+    padding-bottom: 5px;
     border-radius: 3px;
     cursor: pointer;
     margin: 10px;
@@ -32,6 +42,8 @@
     background-color: lightpink;
 }
 
-.edit {
-    background-color: lightblue;
+.trash {
+    height: 50px;
+    margin-left: 180px;
+    cursor: pointer;
 }
