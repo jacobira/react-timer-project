@@ -126,6 +126,7 @@ export class Timer extends Component {
                 }
                 else {
                     this.startStop();
+                    alert("Time's Up!");
                     return
                 }
             }
