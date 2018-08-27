@@ -23,8 +23,8 @@ export class Timer extends Component {
                     </div>
                     <div className="timer-numbers">
                         <div id={this.props.num + "timer-value1"} contentEditable={true}>00</div>:
-                        <div id={this.props.num + "timer-value2"} contentEditable={true}>00</div>:
-                        <div id={this.props.num + "timer-value3"} contentEditable={true}>00</div>
+                        <div id={this.props.num + "timer-value2"} contentEditable={true}>02</div>:
+                        <div id={this.props.num + "timer-value3"} contentEditable={true}>30</div>
                     </div>
                 </div>
                 <div className="box-bottom">
